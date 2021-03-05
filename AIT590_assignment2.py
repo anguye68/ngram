@@ -46,7 +46,9 @@ for i in range(len(wordToken)-words):
 
 
 # In[28]:
-
+#To obtain start words of the n-grams generated
+startwords = random.choice(list(ngrams)) #Will randomly choose one from ngrams dictionary
+print(startwords)
 
 curr_sequence = ' '.join(wordToken[0:words]) #beginning 0-3 words of text
 output = curr_sequence

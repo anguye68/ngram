@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[9]:
-
-
+#Libraries needed to run program
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
 import random
@@ -12,6 +10,7 @@ import sys
 import os
 import time
 
+#prompts the user to instruct the program the type of n-gram and number of sentences to generate.
 if len(sys.argv) < 4:
     print('Please provide the the following arguments: n-gram, number of sentences, and at least one text file.')
     exit(1)
@@ -46,32 +45,19 @@ def count_words(str):
 for i in range(3, len(sys.argv)):
     filenames.append(str(cwd) + "\\Text Files\\" + sys.argv[i])
 
-#filenames = [
-#    "/Users/rafeefbaamer/Desktop/AIT590/3435-0.txt",
-#    "/Users/rafeefbaamer/Desktop/AIT590/pg10662.txt",
-#    "/Users/rafeefbaamer/Desktop/AIT590/pg4836.txt",
-#]
-#with open("/Users/rafeefbaamer/Desktop/AIT590/corpus1.txt", "w") as f:
 with open(fname, "w", encoding='utf-8') as f:
     for index, filename in enumerate(filenames):
         f.write(nltk.corpus.gutenberg.raw(filename))
         if index != (len(filenames) - 1):
             f.write(" ")
 
-
-# In[10]:
-
-
 fo = open (fname, "r", encoding= 'utf-8')
 corpus = fo.read()
 corpus = corpus.lower()
 corpus = re.sub(r'[^A-Za-z0-9. ]', ' ', corpus)
 wordToken = word_tokenize(corpus)
-#print(wordToken[:10])
-#print(len(wordToken))
-#sent_list = sent_tokenize(corpus)
-#print(sent_list[:12])
 
+#stores the current time of the request from user as the 'start time'
 start_time = time.time()
 
 ngrams = {}
@@ -87,6 +73,8 @@ for i in range(sentences):
     while (count_words(output) < min_length):
         output = generate_sentence()
     print("Sentence " + str(i + 1) + ": " + output)
+
+#Stores time it took for n-gram model to process input as 'stop time'    
 stop_time = time.time()
+#subtract the two time periods to calculate the runtime of the n-gram:
 print('Time elapsed - ', round(stop_time - start_time), 'secs')
-#print(ngrams.items())

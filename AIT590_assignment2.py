@@ -10,6 +10,7 @@ import random
 import re
 import sys
 import os
+import time
 
 if len(sys.argv) < 4:
     print('Please provide the the following arguments: n-gram, number of sentences, and at least one text file.')
@@ -71,6 +72,8 @@ wordToken = word_tokenize(corpus)
 #sent_list = sent_tokenize(corpus)
 #print(sent_list[:12])
 
+start_time = time.time()
+
 ngrams = {}
 for i in range(len(wordToken)-words):
     seq = ' '.join(wordToken[i:i+words])
@@ -84,4 +87,6 @@ for i in range(sentences):
     while (count_words(output) < min_length):
         output = generate_sentence()
     print("Sentence " + str(i + 1) + ": " + output)
+stop_time = time.time()
+print('Time elapsed - ', round(stop_time - start_time), 'secs')
 #print(ngrams.items())

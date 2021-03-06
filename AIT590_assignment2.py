@@ -11,14 +11,38 @@ import re
 import sys
 import os
 
+if len(sys.argv) < 4:
+    print('Please provide the the following arguments: n-gram, number of sentences, and at least one text file.')
+    exit(1)
+
 cwd = os.path.dirname(os.path.realpath(__file__))
 fname = cwd + "\\corpus1.txt"
 words = int(sys.argv[1])
+sentences = int(sys.argv[2])
+min_length = 10
 filenames = []
 
-#print(len(sys.argv))
+def generate_sentence():
+    running = True
+    curr_sequence = random.choice(list(ngrams))
+    output = curr_sequence
+    while running == True:
+        if curr_sequence not in ngrams.keys():
+            break
+        possible_words = ngrams[curr_sequence]
+        next_word = possible_words[random.randrange(len(possible_words))]
+        output += ' ' + next_word
+        seq_words = nltk.word_tokenize(output)
+        curr_sequence = ' '.join(seq_words[len(seq_words)-words:len(seq_words)])
 
-for i in range(2, len(sys.argv)):
+        if bool(re.search("\.", next_word)) == True:
+            running = False
+    return output
+    
+def count_words(str):
+    return len(re.findall(r'\w+', str))
+    
+for i in range(3, len(sys.argv)):
     filenames.append(str(cwd) + "\\Text Files\\" + sys.argv[i])
 
 #filenames = [
@@ -48,7 +72,6 @@ wordToken = word_tokenize(corpus)
 #print(sent_list[:12])
 
 ngrams = {}
-#words = 3
 for i in range(len(wordToken)-words):
     seq = ' '.join(wordToken[i:i+words])
     #print(seq[:10])
@@ -56,28 +79,9 @@ for i in range(len(wordToken)-words):
         ngrams[seq] = []
     ngrams[seq].append(wordToken[i+words])
 
-
-# In[28]:
-#To obtain start words of the n-grams generated
-#startwords = random.choice(list(ngrams)) #Will randomly choose one from ngrams dictionary
-#print(startwords)
-
-#curr_sequence = ' '.join(wordToken[0:words]) #beginning 0-3 words of text
-curr_sequence = random.choice(list(ngrams))
-output = curr_sequence
-running = True
-
-while running == True:
-    if curr_sequence not in ngrams.keys():
-        break
-    possible_words = ngrams[curr_sequence]
-    next_word = possible_words[random.randrange(len(possible_words))]
-    output += ' ' + next_word
-    seq_words = nltk.word_tokenize(output)
-    curr_sequence = ' '.join(seq_words[len(seq_words)-words:len(seq_words)])
-
-    if bool(re.search("\.", next_word)) == True:
-        running = False
-        
-print(output)
+for i in range(sentences):
+    output = generate_sentence()
+    while (count_words(output) < min_length):
+        output = generate_sentence()
+    print("Sentence " + str(i + 1) + ": " + output)
 #print(ngrams.items())

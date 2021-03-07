@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[9]:
-
-
+#MacOS Version for Rina to run.
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
 import random
@@ -13,21 +11,27 @@ import os
 import time
 
 #prompts the user to instruct the program the type of n-gram and number of sentences to generate.
-print("""Hi, welcome to our N-gram model! This was developed by AIT590 Team 3: Rafeef Baamer, Ashish Hingle,
-      Rina Lidder, and Andy Nguyen. Below are the list of arguments to run our program.
-      Type 'ngram.py 0' to return to this introduction if you get lost.
-      To execute the n-gram model please provide the following arguments: n-gram, number of sentences, and at least one text file.
+arguments = len(sys.argv)
 
-      For example 'ngram.py 2 10 [insert text file name] will execute a bigram and produce 10 sentences.""", sys.argv[0])
+if arguments == 1:
+    print("""
+    Hi, welcome to our N-gram model! This was developed by AIT590 Team 3: Rafeef Baamer, Ashish Hingle,
+      Rina Lidder, and Andy Nguyen.
 
+      To execute the n-gram model pass 'ngram.py' followed by the number of ngrams,
+      sentences, and text files you want the program to use.
 
-if len(sys.argv) < 4:
+      To return to the instructions run 'ngram.py' again.""")
+    exit(1)   
+elif arguments in range(2,4):
+    print('Unable to execute without all parameters. Return to instructions')
     exit(1)
+
 
 cwd = os.path.dirname(os.path.realpath(__file__))
 fname = cwd + "/corpus1.txt"
-words = int(sys.argv[1])
-sentences = int(sys.argv[2])
+words = int(sys.argv[1]) #secondnumber after file name is the words
+sentences = int(sys.argv[2]) #third number after file name is the # sentences
 min_length = 10
 filenames = []
 
@@ -87,3 +91,9 @@ for i in range(sentences):
 stop_time = time.time()
 #subtract the two time periods to calculate the runtime of the n-gram:
 print('Time elapsed - ', round(stop_time - start_time), 'secs')
+
+"""
+List of References:
+geeksforgeeks.org/how-to-use-sys-argv-in-python/
+https://stackabuse.com/python-for-nlp-developing-an-automatic-text-filler-using-n-grams/
+"""

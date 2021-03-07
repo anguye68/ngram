@@ -95,5 +95,6 @@ print('Time elapsed - ', round(stop_time - start_time), 'secs')
 """
 List of References:
 geeksforgeeks.org/how-to-use-sys-argv-in-python/
+https://stackoverflow.com/questions/4188467/how-to-check-if-an-argument-from-commandline-has-been-set
 https://stackabuse.com/python-for-nlp-developing-an-automatic-text-filler-using-n-grams/
 """

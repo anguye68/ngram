@@ -50,12 +50,6 @@ def count_words(str):
 for i in range(3, len(sys.argv)):
     filenames.append(str(cwd) + "\\Text Files\\" + sys.argv[i])
 
-#filenames = [
-#    "/Users/rafeefbaamer/Desktop/AIT590/3435-0.txt",
-#    "/Users/rafeefbaamer/Desktop/AIT590/pg10662.txt",
-#    "/Users/rafeefbaamer/Desktop/AIT590/pg4836.txt",
-#]
-#with open("/Users/rafeefbaamer/Desktop/AIT590/corpus1.txt", "w") as f:
 with open(fname, "w", encoding='utf-8') as f:
     for index, filename in enumerate(filenames):
         f.write(nltk.corpus.gutenberg.raw(filename))
@@ -63,18 +57,11 @@ with open(fname, "w", encoding='utf-8') as f:
             f.write(" ")
 
 
-# In[10]:
-
-
 fo = open (fname, "r", encoding= 'utf-8')
 corpus = fo.read()
 corpus = corpus.lower()
 corpus = re.sub(r'[^A-Za-z0-9. ]', ' ', corpus)
 wordToken = word_tokenize(corpus)
-#print(wordToken[:10])
-#print(len(wordToken))
-#sent_list = sent_tokenize(corpus)
-#print(sent_list[:12])
 
 #stores the current time of the request from user as the 'start time'
 start_time = time.time()

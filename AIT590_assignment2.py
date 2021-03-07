@@ -1,22 +1,27 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[9]:
-
-
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
 import random
 import re
 import sys
 import os
+import time
+
+print("""Hi, welcome to our N-gram model! This was developed by AIT590 Team 3: Rafeef Baamer, Ashish Hingle,
+      Rina Lidder, and Andy Nguyen. Below are the list of arguments to run our program.
+      Type 'ngram.py 0' to return to this introduction if you get lost.
+      To execute the n-gram model please provide the following arguments: n-gram, number of sentences, and at least one text file.
+
+      For example 'ngram.py 2 10 [insert text file name] will execute a bigram and produce 10 sentences.""", sys.argv[0])
+
 
 if len(sys.argv) < 4:
-    print('Please provide the the following arguments: n-gram, number of sentences, and at least one text file.')
     exit(1)
-
+    
 cwd = os.path.dirname(os.path.realpath(__file__))
-fname = cwd + "\\corpus1.txt"
+fname = cwd + "/corpus1.txt"
 words = int(sys.argv[1])
 sentences = int(sys.argv[2])
 min_length = 10
@@ -71,6 +76,9 @@ wordToken = word_tokenize(corpus)
 #sent_list = sent_tokenize(corpus)
 #print(sent_list[:12])
 
+#stores the current time of the request from user as the 'start time'
+start_time = time.time()
+
 ngrams = {}
 for i in range(len(wordToken)-words):
     seq = ' '.join(wordToken[i:i+words])
@@ -84,4 +92,8 @@ for i in range(sentences):
     while (count_words(output) < min_length):
         output = generate_sentence()
     print("Sentence " + str(i + 1) + ": " + output)
-#print(ngrams.items())
+
+#Stores time it took for n-gram model to process input as 'stop time'    
+stop_time = time.time()
+#subtract the two time periods to calculate the runtime of the n-gram:
+print('Time elapsed : ', round(stop_time - start_time), 'secs')

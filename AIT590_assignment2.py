@@ -9,15 +9,22 @@ import sys
 import os
 import time
 
-'''print("""Hi, welcome to our N-gram model! This was developed by AIT590 Team 3: Rafeef Baamer, Ashish Hingle,
-      Rina Lidder, and Andy Nguyen. Below are the list of arguments to run our program.
-      Type 'ngram.py 0' to return to this introduction if you get lost.
-      To execute the n-gram model please provide the following arguments: n-gram, number of sentences, and at least one text file.
+#Interprets the number of arguments a user is passing in the command line
+arguments = len(sys.argv)
 
-      For example 'ngram.py 2 10 [insert text file name] will execute a bigram and produce 10 sentences.""", sys.argv[0])
-'''
+#if the user is just passing the file name in the terminal it will provide the following instructions
+if arguments == 1:
+    print("""
+    Hi, welcome to our N-gram model! This was developed by AIT590 Team 3: Rafeef Baamer, Ashish Hingle,
+      Rina Lidder, and Andy Nguyen.
 
-if len(sys.argv) < 4:
+      To execute the n-gram model pass 'ngram.py' followed by the number of ngrams,
+      sentences, and text files you want the program to use.
+
+      To return to the instructions run 'ngram.py' again.""")
+    exit(1)   
+elif arguments in range(2,4): #if the user is forgetting to give the words/sentences for the n-grams it will provide this error message.
+    print('Unable to execute without all parameters. Return to instructions')
     exit(1)
     
 cwd = os.path.dirname(os.path.realpath(__file__))

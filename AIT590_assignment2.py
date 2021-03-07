@@ -9,13 +9,13 @@ import sys
 import os
 import time
 
-print("""Hi, welcome to our N-gram model! This was developed by AIT590 Team 3: Rafeef Baamer, Ashish Hingle,
+'''print("""Hi, welcome to our N-gram model! This was developed by AIT590 Team 3: Rafeef Baamer, Ashish Hingle,
       Rina Lidder, and Andy Nguyen. Below are the list of arguments to run our program.
       Type 'ngram.py 0' to return to this introduction if you get lost.
       To execute the n-gram model please provide the following arguments: n-gram, number of sentences, and at least one text file.
 
       For example 'ngram.py 2 10 [insert text file name] will execute a bigram and produce 10 sentences.""", sys.argv[0])
-
+'''
 
 if len(sys.argv) < 4:
     exit(1)
@@ -84,3 +84,5 @@ for i in range(sentences):
 stop_time = time.time()
 #subtract the two time periods to calculate the runtime of the n-gram:
 print('Time elapsed : ', round(stop_time - start_time), 'secs')
+
+

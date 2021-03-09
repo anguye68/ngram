@@ -20,6 +20,10 @@
  - How to use command line: geeksforgeeks.org/how-to-use-sys-argv-in-python/
  - How to use command line: https://stackoverflow.com/questions/4188467/how-to-check-if-an-argument-from-commandline-has-been-set
  - Overall process guidance: https://stackabuse.com/python-for-nlp-developing-an-automatic-text-filler-using-n-grams/
+ - Text files used: The Book of the Thousand Nights and a Night (http://www.gutenberg.org/files/3435/3435-0.txt)
+   - THE RISE OF THE DUTCH REPUBLIC (http://www.gutenberg.org/cache/epub/4836/pg4836.txt)
+   - THE NIGHT LAND (http://www.gutenberg.org/cache/epub/10662/pg10662.txt)
+   - The Moonstone (http://www.gutenberg.org/files/155/155-0.txt)
  
 """
 
